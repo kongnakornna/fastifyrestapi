@@ -61,8 +61,12 @@ const APIKEY:any = env.API_KEY
         const username: string = body.username;
         const password: string = body.password;
         try {        
-            const encPassword = crypto.createHash('md5').update(password).digest('hex');
+            var encPassword = crypto.createHash('md5').update(password).digest('hex'); 
             const rs: any = await userModel.login(db, username, encPassword);
+            console.log('username=>' + username);
+            console.log('password=>' + password);
+            console.log('encPassword=>' + encPassword);
+            console.log('rs=>' + rs);
             if (rs.length > 0) {
                 const user: any = rs[0]; 
                 console.log(`user=>`, user);  
@@ -271,7 +275,7 @@ const APIKEY:any = env.API_KEY
             input.idcard = idcard;
             input.date = dateTime;
             input.username = username;
-            input.password = password;
+            input.password = encPassword;
             input.email = emails;
             input.level = level;
             input.status= status;
@@ -313,7 +317,7 @@ const APIKEY:any = env.API_KEY
             console.log("idx", idx); 
             console.log("inputupdate", inputupdate); 
             await userModel.updateuid(db, idx, inputupdate);
-             const createsignin: any = {}  
+            const createsignin: any = {}  
             createsignin.user_id = idx;
             createsignin.username = username;
             createsignin.firstname = firstname || username; 
@@ -554,12 +558,10 @@ const APIKEY:any = env.API_KEY
       return  // exit process        
   })  
   fastify.post('/activate',{schema: ActivateSchema}, async (request: FastifyRequest, reply: FastifyReply) => {
+    reply.header("Access-Control-Allow-Origin", "*");  
+    reply.header('Access-Control-Allow-Methods', 'POST'); 
     const headers: any = request.headers;           
     const body: any = request.body;   
-    const host: any = headers.host;  
-    const secret_key: any = headers.secret_key;
-    const str: any = request.headers.authorization; // token in Bearer  header
-    const token: any = str.replace("Bearer ", "");  
     const code: string = body.code; 
     if (code === null) {
         reply.code(401).send({
@@ -571,10 +573,12 @@ const APIKEY:any = env.API_KEY
                                 }) 
             return  // exit process  
     }   
-    const token_bearer: any = fastify.jwt.verify(code); 
+    const tokendecode: any = fastify.jwt.verify(code); 
     //console.warn(`token_bearer `, token_bearer);
-    const start_token: any = token_bearer.iat;
-    const end_token: any = token_bearer.exp;
+    const start_token: any = tokendecode.iat;
+    const end_token: any = tokendecode.exp;
+    const data_token: any = tokendecode.data;
+    
     //console.warn(`start_token `, start_token);
     //console.warn(`end_token `, end_token); 
     let date: any = Date.now();
@@ -593,19 +597,65 @@ const APIKEY:any = env.API_KEY
     let end_date_en: any =  toEnDate(end_date);
     let start_date_thai: any =  toThaiDate(start_date);
     let end_date_thai: any = toThaiDate(end_date);  
-    console.warn(`start_date_en `, start_date_en);
-    console.warn(`end_date_en `, end_date_en);
-    console.warn(`start_date_thai `, start_date_thai);
-    console.warn(`end_date_thai `, end_date_thai);
-    reply.code(200).send({
-        response: {
-          message: "Activate successful!", 
-          status: 1,
-          StatusCode: '200',
-          data: token_bearer,
-        }
-    })
-    return  // exit process     
+    console.warn(`start_date_en=>`, start_date_en);
+    console.warn(`end_date_en=>`, end_date_en);
+    console.warn(`start_date_thai=>`, start_date_thai);
+    console.warn(`end_date_thai=>`, end_date_thai);
+    console.warn(`tokendecode=>`, tokendecode);
+    console.warn(`count=> `, tokendecode.lengt); 
+    var data: any = tokendecode;
+    var profile_id: any = data['createsignin']['profile_id'];
+    var user_id: number = data['createsignin']['user_id'];
+    var username: number = data['createsignin']['username'];
+    const today = new Date()
+    const dates = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+    const dateTime = dates + ' ' + time
+    const inputupdate = {
+                        status: 1, 
+                        isActive: 1, 
+                        last_sign_in:dateTime,
+                    }  
+    console.log("inputupdate", inputupdate); 
+    await userModel.updateuid(db, user_id, inputupdate);
+    try {
+                reply.code(200).send({
+                    response: {
+                        message: "Activate successful!",
+                        status: 1,
+                        StatusCode: '200',
+                        //user_id:user_id,
+                        profile_id: profile_id,
+                        username:username,
+                        // date_en: start_date_en,
+                        // date_thai: start_date_thai, 
+                        data: data,  
+                    }
+                })
+            return  // exit process   
+    } catch (error: any) { 
+                    reply.code(401).send({
+                                        response: {
+                                            result: "Error",
+                                            message: "Activate error!", 
+                                            status: 1, 
+                                            token: null,
+                                            StatusCode: '401',
+                                        }
+                                }) 
+                    return  // exit process    
+    }finally { 
+                reply.code(403).send({
+                                        response: {
+                                            result: "Error",
+                                            message: "Activate ,Error System something!", 
+                                            status: 1, 
+                                            token: null,
+                                            StatusCode: '403',
+                                        }
+                                }) 
+                    return  // exit process   
+    }
   }) 
   function toThaiDate(date: any) { 
       let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 

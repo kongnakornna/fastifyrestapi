@@ -3,7 +3,8 @@ export default {
     type: 'object',
     properties: {
       code: {
-        type: 'string', 
+        type: 'string',
+        minLength: 10,
       }, 
     },
     required: [

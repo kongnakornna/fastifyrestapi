@@ -95,17 +95,20 @@
 			"name": "activate",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVzaWduaW4iOnsidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJrb25nbmFrb3JubmEiLCJmaXJzdG5hbWUiOiJrb25nbmFrb3JuIiwic3RhdHVzIjowLCJwcm9maWxlX2lkIjoiNTVhNTQwMDhhZDFiYTU4OWFhMjEwZDI2MjljMWRmNDEiLCJkYXRlIjoiMjAyMy0yLTIzIDg6NDk6MTkifSwiaWF0IjoxNjc3MTE2OTYyLCJleHAiOjE2Nzk3MDg5NjJ9.vQTuKNrvOTSiNEecd6tqEx2tdwRwYhXKKtY0sYjG1UI",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVzaWduaW4iOnsidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJrb25nbmFrb3JubmEiLCJmaXJzdG5hbWUiOiJrb25nbmFrb3JuIiwic3RhdHVzIjowLCJwcm9maWxlX2lkIjoiNTVhNTQwMDhhZDFiYTU4OWFhMjEwZDI2MjljMWRmNDEiLCJkYXRlIjoiMjAyMy0yLTI0IDI6NjozMSJ9LCJpYXQiOjE2NzcxNzkxOTEsImV4cCI6MTcwODcxNTE5MX0.1Eu4-VIqq7w_JkXNRDCGpJZqi9TruRK9_JBbBJBWMH8",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3002/seminarapi/users/activate",
 					"protocol": "http",
@@ -170,7 +173,7 @@
 						},
 						{
 							"key": "password",
-							"value": "kongnakornna",
+							"value": "Na@5371@#@#",
 							"type": "text"
 						}
 					]

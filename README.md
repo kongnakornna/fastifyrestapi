@@ -1,15 +1,17 @@
-# Name: seminarapp
-# port : 3001
+# Name: seminarapi
+# port : 3002
 # nodejs  Version node-v18.12.1
 ## Base URL
 ## http://localhost:3002/seminarapi/
-## nodejs v 18
+## nodejs v 18.12.1
 
 
 # How To run project
 # install project
 - Run `npm install`  or Run `npm i ` 
 
+# task kill on Windows10 OS
+- Run `netstat -an taskkill /f /im node.exe`  
 # Development server
 - Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json src/server.ts `
 
