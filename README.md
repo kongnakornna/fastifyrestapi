@@ -2,7 +2,7 @@
 # port : 3001
 # nodejs  Version node-v18.12.1
 ## Base URL
-## http://localhost:3001/seminar/
+## http://localhost:3002/seminarapi/
 ## nodejs v 18
 
 
