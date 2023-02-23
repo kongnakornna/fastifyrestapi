@@ -116,14 +116,6 @@ export class CacheDataOne {
                 console.log('getObject=>', result); 
             return result;
         }
-        const getAsync = function promisifyAsync(key) {
-                return new Promise((resolve, reject) => {
-                    client.get(key, (err, values) => {
-                        if (err) reject(err)
-                        else resolve(values);
-                    });
-                })
-            }
         async GetCacheData(keycache: any) { 
             try {
                 console.log('keycache=>',keycache); 
