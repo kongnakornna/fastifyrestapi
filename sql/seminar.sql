@@ -11,7 +11,7 @@
  Target Server Version : 101101 (10.11.1-MariaDB)
  File Encoding         : 65001
 
- Date: 24/02/2023 02:10:01
+ Date: 24/02/2023 02:37:48
 */
 
 SET NAMES utf8mb4;
@@ -104,7 +104,7 @@ CREATE TABLE `sd_users`  (
 -- ----------------------------
 -- Records of sd_users
 -- ----------------------------
-INSERT INTO `sd_users` VALUES (1, 'kongnakorn', 'jantakun', 'Nakorn', 'Na', NULL, '2023-02-24 02:06:31', 'kongnakornna', '5ef4a6b0978ba16708d5e59238f53026', 'kongnakornna@gmail.com', 0, 1, NULL, NULL, 'dev', 0, 1, NULL, '2023-02-24 02:06:31', 0, NULL, 'Na@5371@#@#', '55a54008ad1ba589aa210d2629c1df41', 0, 0, 0, 3);
+INSERT INTO `sd_users` VALUES (1, 'kongnakorn', 'jantakun', 'Nakorn', 'Na', NULL, '2023-02-24 02:06:31', 'kongnakornna', '5ef4a6b0978ba16708d5e59238f53026', 'kongnakornna@gmail.com', 0, 1, NULL, NULL, 'dev', 0, 1, NULL, '2023-02-24 02:33:33', 0, NULL, 'Na@5371@#@#', '55a54008ad1ba589aa210d2629c1df41', 0, 0, 1, 3);
 
 -- ----------------------------
 -- Table structure for sd_users2
