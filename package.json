@@ -89,6 +89,7 @@
     "reflect-metadata": "^0.1.13",
     "sort-objects-array": "^1.7.1",
     "sql-injection": "^0.0.7",
+    "string-encode-decode": "^1.0.7",
     "typeorm": "^0.2.40",
     "util": "^0.12.5",
     "uuid": "^8.3.0",
