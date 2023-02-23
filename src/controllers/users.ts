@@ -556,10 +556,6 @@ const APIKEY:any = env.API_KEY
   fastify.post('/activate',{schema: ActivateSchema}, async (request: FastifyRequest, reply: FastifyReply) => {
     const headers: any = request.headers;           
     const body: any = request.body;   
-    const host: any = headers.host;  
-    const secret_key: any = headers.secret_key;
-    const str: any = request.headers.authorization; // token in Bearer  header
-    const token: any = str.replace("Bearer ", "");  
     const code: string = body.code; 
     if (code === null) {
         reply.code(401).send({
@@ -571,10 +567,10 @@ const APIKEY:any = env.API_KEY
                                 }) 
             return  // exit process  
     }   
-    const token_bearer: any = fastify.jwt.verify(code); 
+    const tokendecode: any = fastify.jwt.verify(code); 
     //console.warn(`token_bearer `, token_bearer);
-    const start_token: any = token_bearer.iat;
-    const end_token: any = token_bearer.exp;
+    const start_token: any = tokendecode.iat;
+    const end_token: any = tokendecode.exp;
     //console.warn(`start_token `, start_token);
     //console.warn(`end_token `, end_token); 
     let date: any = Date.now();
@@ -597,15 +593,42 @@ const APIKEY:any = env.API_KEY
     console.warn(`end_date_en `, end_date_en);
     console.warn(`start_date_thai `, start_date_thai);
     console.warn(`end_date_thai `, end_date_thai);
-    reply.code(200).send({
-        response: {
-          message: "Activate successful!", 
-          status: 1,
-          StatusCode: '200',
-          data: token_bearer,
-        }
-    })
-    return  // exit process     
+    let data: any =tokendecode.data;    
+    try {
+          reply.code(200).send({
+              response: {
+                  message: "Activate successful!",
+                  status: 1,
+                  StatusCode: '200',
+                  data: data,
+                  date_en: start_date_en,
+                  date_thai: start_date_thai,
+              }
+          })
+          return  // exit process   
+    } catch (error: any) { 
+            reply.code(401).send({
+                                response: {
+                                    result: "Error",
+                                    message: "Activate error!", 
+                                    status: 1, 
+                                    token: null,
+                                    StatusCode: '401',
+                                }
+                          }) 
+            return  // exit process    
+    }finally { 
+        reply.code(403).send({
+                                response: {
+                                    result: "Error",
+                                    message: "Activate ,Error System something!", 
+                                    status: 1, 
+                                    token: null,
+                                    StatusCode: '403',
+                                }
+                          }) 
+            return  // exit process   
+    }
   }) 
   function toThaiDate(date: any) { 
       let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
