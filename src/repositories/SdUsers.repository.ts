@@ -1,4 +1,5 @@
 import { EntityRepository, Repository ,EntityManager} from "typeorm";
+
 import { SdUsers } from "../entities/SdUsers.entity"; 
 @EntityRepository(SdUsers)
 export class SdUsersRepository extends Repository<SdUsers>{
@@ -119,7 +120,7 @@ export class SdUsersRepository extends Repository<SdUsers>{
                     }else{  
                         query.limit(size);
                         query.offset(size * (page - 1));
-                        query.groupBy("u.user_id")
+                        query.groupBy("u.user_id");
                     }
                     if (order=='desc') {
                         query.orderBy("u.user_id", "DESC") 

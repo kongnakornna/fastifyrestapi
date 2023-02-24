@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as knex from 'knex'
 import * as crypto from 'crypto'
 import { UserModel } from '../models/user_model'
+import bodyemailSchema from '../schemas/bodyemail'
 import bodysinginSchema from '../schemas/bodysingin'
 import registerSchema from '../schemas/registerSchema' // {schema: registerSchema}, 
 import bodysingupSchema from '../schemas/bodysingup'
@@ -657,6 +658,165 @@ const APIKEY:any = env.API_KEY
                     return  // exit process   
     }
   }) 
+  /******/
+  fastify.post('/resetpassword',{schema: bodyemailSchema}, async (request: FastifyRequest, reply: FastifyReply) => {
+        const reportError = ({message}: {message: string}) => {}
+        reply.header("Access-Control-Allow-Origin", "*");  
+        reply.header('Access-Control-Allow-Methods', 'POST'); 
+        const body: any = request.body;
+        const email: string = body.email; 
+        try {         
+            const rs: any = await userModel.reset_password(db, email);
+            console.log('email=>' + email); 
+            console.log('rs=>' + rs);
+            if (rs.length > 0) {
+                const user: any = rs[0]; 
+                console.log(`user=>`, user);  
+                const rss: any = []
+                rss.user_id = user.user_id;
+                rss.profile_id = user.profile_id;
+                rss.username = user.username;
+                rss.firstname = user.firstname;
+                rss.lastname = user.lastname; 
+                rss.email = user.email; 
+                rss.level = user.level; 
+                console.warn(`rss=>`, rss);   
+                let date: any =  Date.now()
+                var nowseconds = new Date().getTime() 
+                /*
+                  var token = jwt.sign({key_name:'key_value'}, "secret_key", {
+                      expiresIn: '365d'	// expires in 365 days
+                    });
+
+                    // other accepted formats
+                    expiresIn('2 days')  // 172800000
+                    expiresIn('1d')      // 86400000
+                    expiresIn('10h')     // 36000000
+                    expiresIn('2.5 hrs') // 9000000
+                    expiresIn('2h')      // 7200000
+                    expiresIn('1m')      // 60000
+                    expiresIn('5s')      // 5000
+                    expiresIn('1y')      // 31557600000
+                    expiresIn('100')     // 100
+                    expiresIn('-3 days') // -259200000
+                    expiresIn('-1h')     // -3600000
+                    expiresIn('-200')    // -200
+                */
+                const token = fastify.jwt.sign({user},{ expiresIn:'1d'})
+                reply.code(200).send({
+                                    response: {
+                                        message: "Reset Password Successful!",
+                                        status: 1, 
+                                        ok: true,                                       
+                                        statusCode: '200',
+                                        data: user,
+                                        token,
+                                    }
+                })   
+                return  // exit process  
+            } else { 
+                reply.code(401).send({
+                                    response: { 
+                                        message: "Reset Password failed!", 
+                                        status: 1,
+                                        ok: false,
+                                        statusCode: '401',
+                                        data: null,
+                                        token: null, 
+                                    }
+                              })   
+              return  // exit process  
+            } 
+        }catch (error: any) { 
+            console.log('error toUpperCase=>',error.toUpperCase());  
+            console.log('message=>',error.message) 
+            reportError({ message: error.message })
+            console.log('reportError=>',reportError) 
+            reply.code(500).send({
+                                  response: { 
+                                      message: getErrorMessage, 
+                                      status: 1,
+                                      ok: false,
+                                      statusCode: '500',
+                                      result: null,
+                                      token: null, 
+                                      data: null,
+                                  }
+                                })            
+            return  // exit process     
+        }finally{
+              reply.code(500).send({
+                                  response: { 
+                                      message: "error",
+                                      status: 1,
+                                      ok: false,
+                                      statusCode: '500',
+                                      result: null,
+                                      token: null,
+                                      data: null,
+                                  }
+                                })                   
+            return  // exit process     
+        }  
+  })
+  fastify.post('/verifyemail', {preValidation: [fastify.authenticate]}, async (request: FastifyRequest, reply: FastifyReply) => {
+    reply.header("Access-Control-Allow-Origin", "*");  
+    reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+    const headers: any = request.headers;           
+    const body: any = request.body;   
+    const host: any = headers.host;  
+    const secret_key: any = headers.secret_key;
+    const str: any = request.headers.authorization; // token in Bearer  header
+    const token: any = str.replace("Bearer ", "");  
+    const token_bearer: any = fastify.jwt.verify(token); 
+    //console.warn(`token_bearer `, token_bearer);
+    const start_token: any = token_bearer.iat;
+    const end_token: any = token_bearer.exp;
+    //console.warn(`start_token `, start_token);
+    //console.warn(`end_token `, end_token); 
+    let date: any = Date.now();
+    var nowseconds = new Date().getTime();
+    var now: any = nowseconds;
+    var numberValuenow: any = Math.round(now / 1000); 
+    //console.warn(`numberValuenow `, numberValuenow); 
+    let expire_in_time1: number = (end_token - start_token); 
+    let expire_in_time:number = (numberValuenow - end_token); 
+    //console.warn(`expire_in_time `, expire_in_time);
+    var start_date = new Date(start_token * 1000); 
+    //console.warn(`start_date `, start_date);
+    let end_date: any = new Date(end_token * 1000);
+    //console.warn(`end_date `, end_date);
+    let start_date_en: any = toEnDate(start_date);
+    let end_date_en: any =  toEnDate(end_date);
+    let start_date_thai: any =  toThaiDate(start_date);
+    let end_date_thai: any = toThaiDate(end_date);  
+    //console.warn(`start_date_en `, start_date_en);
+    //console.warn(`end_date_en `, end_date_en);
+    //console.warn(`start_date_thai `, start_date_thai);
+    //console.warn(`end_date_thai `, end_date_thai);
+    let users: any = token_bearer.user;  
+    reply.code(200).send({
+        response: {
+          message: "Authenticate verify email token successful!", 
+          status: 1,
+          //data: users, 
+          user_id: users.user_id, 
+          profile_id: users.profile_id, 
+          firstname: users.firstname, 
+          lastname: users.lastname, 
+          email: users.email, 
+          username: users.username, 
+          //start_date:start_date,
+          //end_date: end_date,
+          start_date_en:start_date_en,
+          end_date_en:end_date_en,
+          start_date_thai:start_date_thai,
+          end_date_thai:end_date_thai,
+          StatusCode: '200',
+        }
+    })
+    return  // exit process     
+  })  
   function toThaiDate(date: any) { 
       let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
         let year = date.getFullYear() + 543;

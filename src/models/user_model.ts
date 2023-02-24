@@ -68,6 +68,11 @@ where_sd_users_profile_id_remove(db: knex, profile_id: any) {
         return db('sd_users')
         .where('profile_id', profile_id)
         .del()
+  }
+reset_password(db: knex, email: any) {
+    return db('sd_users')
+      .select('user_id','profile_id', 'firstname', 'lastname', 'email', 'username', 'level')
+      .where('email', email)
     }
 sd_users_profile(db: knex, user_id: any) {
     return db('sd_users')
@@ -258,6 +263,7 @@ filter_user(db: knex,filter: any) {
                       } 
                 } 
                 if(isCount==1){ 
+                      console.log(`query `, query);
                       return query;
                 }else{ 
                       console.log(`query `, query);

@@ -21,9 +21,7 @@ export default async function index(fastify: FastifyInstance) {
                                 response: {
                                     message: 'Welcome To Application Service!', 
                                     status: 1, 
-                                    data: { 
-                                         getchar:getchar
-                                    },
+                                    data:getchar,
                                     StatusCode: '200',
                                 }
                           })
@@ -38,9 +36,7 @@ export default async function index(fastify: FastifyInstance) {
                                     response: {
                                         message: 'Welcome To Application Service!', 
                                         status: 1, 
-                                        data: { 
-                                            getchar:getchar
-                                        },
+                                        data:getchar,
                                         StatusCode: '200',
                                     }
                             }) 
