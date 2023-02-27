@@ -1,6 +1,6 @@
 import * as knex from 'knex';
 /**************************************************/    
-export class SeminarDetailModel {
+export class SeminarModel {
     seminar_register(db: knex, data: any) {
         return db('seminarregister')
         .insert(data)

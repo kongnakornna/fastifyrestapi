@@ -38,3 +38,39 @@
 
 ## Database
 Database as MySQL version 5.6.20 on trueplookpanya 
+
+```
+Test for Backend Developer
+## Assignment
+1. Can you ****only design** Database/Table** for seminar website with 
+****explanation**** (in English or Thai)? The MVP user stories will be:
+ 1. As a seminar host, I can create new seminar event.
+ 2. As a seminar host, I can upload the visitor list using csv and those 
+list will be save to the database.
+ 3. As a seminar host, I can link the speaker to event, so I can know who 
+is the speaker for that event.
+ 4. As a seminar host, I can define the place where the seminar event is 
+located.
+ 5. As a seminar host, I can send the web link to the visitor.
+ 6. As a visitor, I can click the link that send from seminar host to 
+accept the invitation.
+ 7. As a seminar host, I can see which visitor accept the invitation.
+2. Create **just one** simple API to get the the list of visitor list base 
+on/filter by seminar event
+
+1.****เฉพาะออกแบบ** ฐานข้อมูล/ตาราง** สำหรับเว็บไซต์สัมมนากับ
+****คำอธิบาย**** (ภาษาอังกฤษหรือภาษาไทย)? เรื่องราวของผู้ใช้ MVP จะเป็น:
+  1. ในฐานะผู้จัดสัมมนา ฉันสามารถสร้างงานสัมมนาใหม่ๆ
+  2. ในฐานะผู้จัดสัมมนา ฉันสามารถอัปโหลดรายชื่อผู้เยี่ยมชมโดยใช้ csv และเหล่านั้น
+รายการจะถูกบันทึกไว้ในฐานข้อมูล
+  3. ในฐานะพิธีกรงานสัมมนา ฉันสามารถเชื่อมโยงผู้บรรยายเข้ากับงาน เพื่อให้ฉันรู้ว่าใคร
+เป็นผู้บรรยายในงานนั้น
+  4. ในฐานะเจ้าภาพสัมมนา ฉันสามารถกำหนดสถานที่จัดงานสัมมนาได้
+ตั้งอยู่.
+  5. ในฐานะเจ้าภาพสัมมนา ฉันสามารถส่งลิงค์เว็บให้ผู้เยี่ยมชมได้
+  6. ในฐานะผู้เยี่ยมชม ฉันสามารถคลิกลิงก์ที่ส่งจากโฮสต์สัมมนาไปที่
+ตอบรับคำเชิญ
+  7. ในฐานะเจ้าภาพสัมมนา ฉันสามารถดูได้ว่าผู้เยี่ยมชมคนใดตอบรับคำเชิญ
+2. สร้าง **เพียงหนึ่งเดียว** API ง่ายๆ เพื่อรับรายการฐานรายชื่อผู้เยี่ยมชม
+เปิด/กรองตามงานสัมมนา
+```
