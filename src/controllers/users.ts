@@ -658,7 +658,6 @@ const APIKEY:any = env.API_KEY
                     return  // exit process   
     }
   }) 
-  /******/
   fastify.post('/resetpassword',{schema: bodyemailSchema}, async (request: FastifyRequest, reply: FastifyReply) => {
         const reportError = ({message}: {message: string}) => {}
         reply.header("Access-Control-Allow-Origin", "*");  
@@ -759,7 +758,7 @@ const APIKEY:any = env.API_KEY
             return  // exit process     
         }  
   })
-  fastify.post('/verifyemail', {preValidation: [fastify.authenticate]}, async (request: FastifyRequest, reply: FastifyReply) => {
+  fastify.post('/verifyresetpassword', {preValidation: [fastify.authenticate]}, async (request: FastifyRequest, reply: FastifyReply) => {
     reply.header("Access-Control-Allow-Origin", "*");  
     reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
     const headers: any = request.headers;           
@@ -810,8 +809,8 @@ const APIKEY:any = env.API_KEY
           //end_date: end_date,
           start_date_en:start_date_en,
           end_date_en:end_date_en,
-          start_date_thai:start_date_thai,
-          end_date_thai:end_date_thai,
+         // start_date_thai:start_date_thai,
+         // end_date_thai:end_date_thai,
           StatusCode: '200',
         }
     })
