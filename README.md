@@ -49,6 +49,7 @@ Database as MySQL version 5.6.20 on trueplookpanya
 # System analysis and design system basic api workflow
 # Concept
 # Features and system workflow
+```
  1. Authentication API (Modules Authentication )
   - 1.0 Register or sign up or  Verify API-KEY to Create token 
   - 1.1 Create token or sign in or Verify by API-KEY to Create token 
@@ -58,15 +59,28 @@ Database as MySQL version 5.6.20 on trueplookpanya
   - 1.5 Validate Input data before access function and modules
   - 1.6 Cache management api
  2. User Management (Modules User )
- - 2.1
- - 2.2
+ - 2.1 Update User Profile
+ - 2.2 Access User permission level
+ - 2.3 Delete User data Form Database
  3. Seminar Management (Modules Seminar )
- - 3.1
- - 3.2
+ - 3.1  create new seminar  event or title. save to the database
+ - 3.2  create detail list seminar event. save to the database
+ - 3.3  create seminar period  save to the database
+ - 3.4  create new  narrator save to the database
+ - 3.5  create new link the speaker to event form narrator
+ - 3.6  upadte data place  the seminar located. 
+ - 3.7  Register to seminar event
+ - 3.8  Verify token after Register form user to active event
+ - 3.9  Create  by token generate Create link to the visitor.
+ - 3.10 Verify token form link to activator accept the invitation.
+ - 3.11 Repornd Result data from database ,Show visitor data accept to seminar
+ - 3.12 Repornd Result data,narrator,visitor, data users seminar 
  4. System Report (Modules Report )
- - 4.1
- - 4.2
+ - 4.1 Report data,narrator,visitor, data users seminar 
+ - 4.2 Report data seminar event have count title seminar,detail seminar,narrator,visitor, data users seminar
+```
 ##  Task Process Develop
+```
 - 1. Design system basic api workflow
 - 2. Develop Application  use workflow diagram
 - 3. Test by Tester or UAT Test  follow up workflow diagram
@@ -75,41 +89,43 @@ Database as MySQL version 5.6.20 on trueplookpanya
 - 6. MA (Maintenance api)
 - 7. Upgrad Api 
 ```
-MVP หรือ Minimum Viable Product คือ เครื่องมือกลยุทธ์ทางธุรกิจที่มีเป้าหมายเพื่อ ‘ลดความเสี่ยง’ ที่อาจเกิดขึ้นจากการผลิตสินค้าหรือบริการแล้วดันไม่เป็นที่ต้องการของตลาด โดยสร้าง “ผลิตภัณฑ์ตั้งต้น” หรือ “บริการตัวอย่าง” ที่เรียกกันภาษาสตาร์ทอัพว่า MVP ออกไปทดลองตลาดก่อน แล้วนำผลตอบรับมาวิเคราะห์ว่าควรเพิ่ม/ลดฟีเจอร์อะไร หรือควรปรับหน้าตาผลิตภัณฑ์หรือบริการตั้งต้นใหม่หรือไม่ อย่างไร
-
-
-
-Test for Backend Developer
-## Assignment
-1. Can you ****only design** Database/Table** for seminar website with 
-****explanation**** (in English or Thai)? The MVP user stories will be:
- 1. As a seminar host, I can create new seminar event.
- 2. As a seminar host, I can upload the visitor list using csv and those 
-list will be save to the database.
- 3. As a seminar host, I can link the speaker to event, so I can know who 
-is the speaker for that event.
- 4. As a seminar host, I can define the place where the seminar event is 
-located.
- 5. As a seminar host, I can send the web link to the visitor.
- 6. As a visitor, I can click the link that send from seminar host to 
-accept the invitation.
- 7. As a seminar host, I can see which visitor accept the invitation.
-2. Create **just one** simple API to get the the list of visitor list base 
-on/filter by seminar event
-
-1.****เฉพาะออกแบบ** ฐานข้อมูล/ตาราง** สำหรับเว็บไซต์สัมมนากับ
-****คำอธิบาย**** (ภาษาอังกฤษหรือภาษาไทย)? เรื่องราวของผู้ใช้ MVP จะเป็น:
-  1. ในฐานะผู้จัดสัมมนา ฉันสามารถสร้างงานสัมมนาใหม่ๆ
-  2. ในฐานะผู้จัดสัมมนา ฉันสามารถอัปโหลดรายชื่อผู้เยี่ยมชมโดยใช้ csv และเหล่านั้น
-รายการจะถูกบันทึกไว้ในฐานข้อมูล
-  3. ในฐานะพิธีกรงานสัมมนา ฉันสามารถเชื่อมโยงผู้บรรยายเข้ากับงาน เพื่อให้ฉันรู้ว่าใคร
-เป็นผู้บรรยายในงานนั้น
-  4. ในฐานะเจ้าภาพสัมมนา ฉันสามารถกำหนดสถานที่จัดงานสัมมนาได้
-ตั้งอยู่.
-  5. ในฐานะเจ้าภาพสัมมนา ฉันสามารถส่งลิงค์เว็บให้ผู้เยี่ยมชมได้
-  6. ในฐานะผู้เยี่ยมชม ฉันสามารถคลิกลิงก์ที่ส่งจากโฮสต์สัมมนาไปที่
-ตอบรับคำเชิญ
-  7. ในฐานะเจ้าภาพสัมมนา ฉันสามารถดูได้ว่าผู้เยี่ยมชมคนใดตอบรับคำเชิญ
-2. สร้าง **เพียงหนึ่งเดียว** API ง่ายๆ เพื่อรับรายการฐานรายชื่อผู้เยี่ยมชม
-เปิด/กรองตามงานสัมมนา
+##  MVP ( Minimum Viable Product )
 ```
+ -- Deliver work frequently and clearly divide various parts according to the order.
+ -- User research Demo Version to user Test possible on products
+ -- Competitive analysis
+ -- How quickly you’ll be able to iterate on certain types of functionality when you receive user feedback
+ -- The relative costs to implement the various user stories or epics
+ -- Release a product to the market as quickly as possible
+ -- Test an idea with real users before committing a large budget to the --product’s full development
+ -- Learn what resonates with the company’s target market and what doesn’t
+ ```
+
+# Agile development
+
+## The Development Team consists of professionals who do the work of delivering a potentially releasable Increment of “Done” 
+-- product at the end of each Sprint. Only members of the Development --Team create the Increment.
+-- Development Teams are structured and empowered by the organization to organize and manage their own work. The resulting
+-- synergy optimizes the Development Team’s overall efficiency and effectiveness. (3-9 Members)
+-- Development Teams have the following characteristics:
+-- They are self-organizing. No one (not even the Scrum Master) tells the Development Team how to turn Product Backlog
+-- into Increments of potentially releasable functionality;
+-- Development Teams are cross-functional, with all of the skills as a team necessary to create a product Increment;
+## Scrum recognizes no titles for Development Team members other than Developer, regardless of the work being
+-- performed by the person; there are no exceptions to this rule;
+## Scrum recognizes no sub-teams in the Development Team, regardless of particular domains that need to be addressed
+-- like testing or business analysis; there are no exceptions to this rule; and,
+## Individual Development Team members may have specialized skills and areas of focus, but
+-- accountability belongs to the Development Team as a whole
+
+
+## Development Teams The software development team consists of Product development specialists who will be able to deliver an increment of “finished” products at the end of each sprint.
+## Only members of the software development team can create an increment.
+##  Development Teams Set the structure and empower each other as a team. to determine their own way of working The result of working together to optimize, make the image
+## Overall, the software development team is most efficient and effective. The software development team must have the following characteristics:
+##  Self-administered team without anyone (not even the Scrum Master) telling the development team how to turn the Product Backlog into adding potentially published functionality.
+##  The development team works across functions. It has all the skills needed to create incremental products.
+##  Scrum does not recognize names for development team members other than Developer, regardless of the work performed by that person. There are no exceptions to this rule.
+##  Scrum does not recognize sub-teams in the development team. regardless of the specific domain to be managed, such as testing or business analytics. There are no exceptions to this rule.
+##  Individual development team members may have specific skills and areas of focus. But the responsibility lies with the development team as a whole.
+
