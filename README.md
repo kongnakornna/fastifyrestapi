@@ -52,15 +52,16 @@
 Database as MySQL  
 
 ## AI Assistant
+```
 # https://www.npmjs.com/package/virtual-assistant
 # https://www.npmjs.com/package/virtual-google-assistant
 # https://xekhai.medium.com/get-chatty-with-your-own-ai-assistant-a-guide-to-building-with-node-js-express-and-openai-6029ab6e6f7d
 
-
-# MVP หรือ Minimum Viable Product
-# System analysis and design system basic api workflow
-# Concept
-# Features and system workflow
+```
+### MVP (Minimum Viable Product)
+###  System analysis and design system basic api workflow
+###  Concept
+###  Features and system workflow
 ```
  1. Authentication API (Modules Authentication )
   - 1.0 Register or sign up or  Verify API-KEY to Create token 
@@ -134,11 +135,11 @@ Database as MySQL
 -- like testing or business analysis; there are no exceptions to this rule; and,
 ## Individual Development Team members may have specialized skills and areas of focus, but
 -- accountability belongs to the Development Team as a whole
-```
+ 
 ## Development Teams The software development team consists of Product development specialists who will be able to deliver an increment of “finished” products at the end of each sprint.
 Only members of the software development team can create an increment.
 ## Development Teams Set the structure and empower each other as a team. to determine their own way of working The result of working together to optimize, make the image
-```
+ 
 Overall, the software development team is most efficient and effective. The software development team must have the following characteristics:
 • Self-administered team without anyone (not even the Scrum Master) telling the development team how to turn the Product Backlog into adding potentially published functionality.
 • The development team works across functions. It has all the skills needed to create incremental products.
