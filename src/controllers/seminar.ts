@@ -237,6 +237,7 @@ export default async function seminar(fastify: FastifyInstance) {
                     filter1.isCount=0;
                     const ResultArray = await Seminar_Model.filter_title_users_seminar(db, filter1);
                      /*****************************************/
+                try {      
                     let tempData = [];
                     for (const [key, value] of Object.entries(ResultArray)) {
                         // เอาค่าใน Object มา แปลง เป็น array แล้วนำไปใช้งาน ต่อ 
@@ -279,8 +280,8 @@ export default async function seminar(fastify: FastifyInstance) {
                     console.warn(resultData)    
                     reply.code(200).send({
                                         response: {
-                                            result: "Authenticate Verify token successful !",
-                                            message: "Protected area!!", 
+                                            result: "users seminar list!",
+                                            message: "Result,Data successful!", 
                                             status: 1, 
                                             data: null, 
                                             StatusCode: '200',
@@ -292,7 +293,30 @@ export default async function seminar(fastify: FastifyInstance) {
                                         perpage: perpage,
                                         data: resultData,
                                     })   
-                    return  // exit process      
+                        return  // exit process  
+                 } catch (error: any) { 
+                        reply.code(401).send({
+                                            response: {
+                                                result: "Error",
+                                                message: "Result,Data  Unsuccessful!", 
+                                                status: 1, 
+                                                token: null,
+                                                StatusCode: '401',
+                                            }
+                                    }) 
+                        return  // exit process    
+                }finally {
+                    reply.code(403).send({
+                                            response: {
+                                                result: "Error",
+                                                message: "Result,Data Unsuccessful,Error System something!", 
+                                                status: 1, 
+                                                token: null,
+                                                StatusCode: '403',
+                                            }
+                                    }) 
+                        return  // exit process   
+                }        
             }) 
         function toThaiDate(date: any) { 
             let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
