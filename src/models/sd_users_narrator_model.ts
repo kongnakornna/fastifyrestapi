@@ -1,6 +1,6 @@
 import * as knex from 'knex';
 /**************************************************/    
-export class SdusersNarratorrModel {
+export class SdusersNarratorModel {
     create_data(db: knex, data: any) {
         return db('sd_users_narrator')
         .insert(data)
@@ -16,6 +16,11 @@ export class SdusersNarratorrModel {
         .where('narrator_id', narrator_id)
         .update(data)
     }
+    validation_email(db: knex, email: any) {
+        return db('sd_users_narrator')
+        .select('email')
+        .where('email', email)
+    } 
     check_data_by_narrator_id(db: knex, narrator_id: any) {
         return db('sd_users_narrator')
         .select('*')
@@ -25,6 +30,23 @@ export class SdusersNarratorrModel {
             return db('sd_users_narrator')
             .where('narrator_id', narrator_id)
             .del()
+    }
+    last_id(db: knex) {
+        return db('sd_users_narrator')
+        .select('narrator_id')
+        .orderBy('narrator_id','desc')
+        .limit(1)
+    }
+    activate(db: knex, narrator_id: any, data: any) {
+        return db('sd_users_narrator')
+        .where('narrator_id', narrator_id)
+        .update(data)
+    }
+    login(db: knex, username: any, password: any) {
+       return db('sd_users_narrator')
+            .select('firstname,lastname,fullname,nickname,idcard,date,username,email,avatar,remark,gender,birthday,last_sign_in,status')
+            .where('username', username)
+            .andWhere('password', password)
     }
     filter_data(db: knex,filter: any) {
                 const keyword = filter.keyword; 

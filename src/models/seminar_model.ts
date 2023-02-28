@@ -1,6 +1,6 @@
 import * as knex from 'knex';
 /**************************************************/    
-export class SeminarModel {
+export class SeminarModels {
     seminar_register(db: knex, data: any) {
         return db('seminarregister')
         .insert(data)
@@ -22,6 +22,13 @@ export class SeminarModel {
             .select('*')
             .where('seminar_title_id', seminar_title_id)
             .andWhere('seminar_id', seminar_id) 
+    }
+    check_validate(db: knex, seminar_title_id: any, seminar_id: any, period_id: any) {
+        return db('seminar_period_event_log')
+            .select('*')
+            .where('seminar_title_id', seminar_title_id)
+            .andWhere('seminar_id', seminar_id) 
+            .andWhere('period_id', period_id)
     }
     remove_by_seminar_id(db: knex, seminar_title_id: any, seminar_id: any) {
             return db('seminar_title')
