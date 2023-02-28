@@ -263,8 +263,9 @@ export class SeminarModels {
                     if(isCount==1){
                         query = query.select('u.seminar_id');
                     }else{ 
-                        query = query.select('u.seminar_id');   
-                        query = query.select('t.title as title_name');   
+                        query = query.select('u.seminar_id');  
+                        query = query.select('u.seminar_id'); 
+                        query = query.select('t.id as title_id');   
                         query = query.select('t.detail as title_detail');  
                         query = query.select('t.spake_time as spake_time');  
                         query = query.select('t.url as title_url');  
