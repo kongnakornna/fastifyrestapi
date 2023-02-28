@@ -8,16 +8,17 @@
 ##  email kongnakornna@gmail.com
 
 # Use framework
-##  NodJS --> Fastify framework
-##  Typescript
-##  Typeorm mysql
-##  knextjs crud mysql
-##  Mysql
-##  Redis cache
-##  gulp-typescript
-##  nodemon
-##  Docker 
-
+```
+- NodJS --> Fastify framework
+- Typescript
+- Typeorm mysql
+- knextjs crud mysql
+- Mysql
+- Redis cache
+- gulp-typescript
+- nodemon
+- Docker 
+```
 # How To run project
 # install project
 - Run `npm install`  or Run `npm i ` 
@@ -119,6 +120,7 @@ Database as MySQL
 # Agile development
 
 ## The Development Team consists of professionals who do the work of delivering a potentially releasable Increment of “Done” 
+```
 -- product at the end of each Sprint. Only members of the Development --Team create the Increment.
 -- Development Teams are structured and empowered by the organization to organize and manage their own work. The resulting
 -- synergy optimizes the Development Team’s overall efficiency and effectiveness. (3-9 Members)
@@ -132,13 +134,15 @@ Database as MySQL
 -- like testing or business analysis; there are no exceptions to this rule; and,
 ## Individual Development Team members may have specialized skills and areas of focus, but
 -- accountability belongs to the Development Team as a whole
-
+```
 ## Development Teams The software development team consists of Product development specialists who will be able to deliver an increment of “finished” products at the end of each sprint.
 Only members of the software development team can create an increment.
 ## Development Teams Set the structure and empower each other as a team. to determine their own way of working The result of working together to optimize, make the image
+```
 Overall, the software development team is most efficient and effective. The software development team must have the following characteristics:
 • Self-administered team without anyone (not even the Scrum Master) telling the development team how to turn the Product Backlog into adding potentially published functionality.
 • The development team works across functions. It has all the skills needed to create incremental products.
 • Scrum does not recognize names for development team members other than Developer, regardless of the work performed by that person. There are no exceptions to this rule.
 • Scrum does not recognize sub-teams in the development team. regardless of the specific domain to be managed, such as testing or business analytics. There are no exceptions to this rule.
 • Individual development team members may have specific skills and areas of focus. But the responsibility lies with the development team as a whole.
+```
