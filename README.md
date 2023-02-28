@@ -7,6 +7,17 @@
 ##  Author Kongnakorn Jantakun
 ##  email kongnakornna@gmail.com
 
+# Use framework
+##  NodJS --> Fastify framework
+##  Typescript
+##  Typeorm mysql
+##  knextjs crud mysql
+##  Mysql
+##  Redis cache
+##  gulp-typescript
+##  nodemon
+##  Docker 
+
 # How To run project
 # install project
 - Run `npm install`  or Run `npm i ` 
