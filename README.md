@@ -1,4 +1,4 @@
-# Name: seminarapi
+# Name: fastapi
 # port : 3002
 # nodejs  Version node-v18.12.1
 ## Base URL
@@ -6,6 +6,17 @@
 ## nodejs v 18.x.x
 ##  Author Kongnakorn Jantakun
 ##  email kongnakornna@gmail.com
+
+# Use framework
+##  NodJS --> Fastify framework
+##  Typescript
+##  Typeorm mysql
+##  knextjs crud mysql
+##  Mysql
+##  Redis cache
+##  gulp-typescript
+##  nodemon
+##  Docker 
 
 # How To run project
 # install project
