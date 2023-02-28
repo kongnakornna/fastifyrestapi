@@ -1,4 +1,4 @@
-# Name: seminarapi
+# Name: fastapi
 # port : 3002
 # nodejs  Version node-v18.12.1
 ## Base URL
