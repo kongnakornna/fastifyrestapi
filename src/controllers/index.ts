@@ -21,15 +21,12 @@ export default async function index(fastify: FastifyInstance) {
                                 response: {
                                     message: 'Welcome To Application Service!', 
                                     status: 1, 
-                                    data: { 
-                                         getchar:getchar
-                                    },
+                                    data:getchar,
                                     StatusCode: '200',
                                 }
                           })
         return  // exit process        
   })
-    
   fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
         reply.header("Access-Control-Allow-Origin", "*");  
         reply.header('Access-Control-Allow-Methods', 'POST'); 
@@ -38,15 +35,12 @@ export default async function index(fastify: FastifyInstance) {
                                     response: {
                                         message: 'Welcome To Application Service!', 
                                         status: 1, 
-                                        data: { 
-                                            getchar:getchar
-                                        },
+                                        data:getchar,
                                         StatusCode: '200',
                                     }
                             }) 
         return  // exit process                      
   })
-
   fastify.post('/createtoken', async (request: FastifyRequest, reply: FastifyReply) => {
     const reportError = ({message}: {message: string}) => {}
     reply.header("Access-Control-Allow-Origin", "*");  
@@ -98,7 +92,6 @@ export default async function index(fastify: FastifyInstance) {
           return  // exit process    
     } 
   }) 
-    
   fastify.post('/verifytoken', {preValidation: [fastify.authenticate]/*สรวจสอบ Tokem*/}, async (request: FastifyRequest, reply: FastifyReply) => {
     const headers: any = request.headers;           
     const body: any = request.body;   
@@ -148,7 +141,6 @@ export default async function index(fastify: FastifyInstance) {
     })
     return  // exit process     
   })  
-    
   fastify.post('/private', {preValidation: [fastify.authenticate]}, async (request: FastifyRequest, reply: FastifyReply) => {
     const headers: any = request.headers           
     const body: any = request.body    
@@ -172,7 +164,6 @@ export default async function index(fastify: FastifyInstance) {
                     }) 
       return  // exit process        
   }) 
-   
   fastify.post('/jwt/sign', async (request: FastifyRequest, reply: FastifyReply) => {
     const headers: any = request.headers || null;
     const query: any = request.query || null;
@@ -220,7 +211,6 @@ export default async function index(fastify: FastifyInstance) {
 
     } 
   })
-
   fastify.post('/jwt/private', {preValidation: [fastify.authenticate] /*ตรวจสอบ Tokem*/}, async (request: FastifyRequest, reply: FastifyReply) => {
     const headers: any = request.headers           
     const body: any = request.body    
@@ -244,7 +234,6 @@ export default async function index(fastify: FastifyInstance) {
                     }) 
       return  // exit process        
   }) 
-    
   function toThaiDate(date: any) { 
       let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
         let year = date.getFullYear() + 543;
@@ -255,7 +244,6 @@ export default async function index(fastify: FastifyInstance) {
         let second = date.getSeconds().toString().padStart(2, "0");
       return `${numOfDay} ${month} ${year} ` +`${hour}:${minutes}:${second} น.`;
   }
-    
   function toEnDate(date: any) { 
       let monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]; 
       let monthNameslong = ["January", "February", "March.", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
@@ -267,7 +255,6 @@ export default async function index(fastify: FastifyInstance) {
       let second = date.getSeconds().toString().padStart(2, "0");
       return `${numOfDay} ${month} ${year} ` +`${hour}:${minutes}:${second}`;
   }
-    
   function timeConverter(UNIX_timestamp:any){
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -290,7 +277,6 @@ export default async function index(fastify: FastifyInstance) {
         }
         return result
   }
-    
   function getRandomchar(length: any) { 
         var randomChars: any =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var result: any =  ''
@@ -299,7 +285,6 @@ export default async function index(fastify: FastifyInstance) {
         }
         return result
   }
-    
   function getRandomint(length: any) { 
         var randomChars: any =  '0123456789';
         var result: any =  ''
@@ -316,7 +301,6 @@ export default async function index(fastify: FastifyInstance) {
         }
         return result
   }
-    
   function getRandomsrtbig(length: any) { 
         var randomChars: any =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         var result: any =  ''
@@ -325,7 +309,6 @@ export default async function index(fastify: FastifyInstance) {
         }
         return result
   }
-    
   function passwordValidator(inputtxt: any){ 
     var paswd :any= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
     if(inputtxt.match(paswd)){  

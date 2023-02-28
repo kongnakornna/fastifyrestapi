@@ -117,7 +117,6 @@ export default async function login(fastify: FastifyInstance) {
         } 
       }
   })
-  
   fastify.post('/verifylogin', {preValidation: [fastify.authenticate]/*สรวจสอบ Tokem*/}, async (request: FastifyRequest, reply: FastifyReply) => {
     const headers: any = request.headers;           
     const body: any = request.body;   
@@ -167,7 +166,6 @@ export default async function login(fastify: FastifyInstance) {
     })
     return  // exit process     
   }) 
-  
   function toThaiDate(date: any) { 
       let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
         let year = date.getFullYear() + 543;
@@ -178,7 +176,6 @@ export default async function login(fastify: FastifyInstance) {
         let second = date.getSeconds().toString().padStart(2, "0");
       return `${numOfDay} ${month} ${year} ` +`${hour}:${minutes}:${second} น.`;
   }
-
   function toEnDate(date: any) { 
       let monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]; 
       let monthNameslong = ["January", "February", "March.", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
@@ -190,7 +187,6 @@ export default async function login(fastify: FastifyInstance) {
       let second = date.getSeconds().toString().padStart(2, "0");
       return `${numOfDay} ${month} ${year} ` +`${hour}:${minutes}:${second}`;
   }
-
   function timeConverter(UNIX_timestamp:any){
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

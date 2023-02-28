@@ -3,6 +3,12 @@ import * as path from 'path'
 import * as knex from 'knex'
 import * as crypto from 'crypto'
 import { UserModel } from '../models/user_model'
+import { FileModel } from '../models/file'
+import { SdusersNarratorrModel } from '../models/sd_users_narrator_model'
+import { SdusersSeminarModel } from '../models/sd_users_seminar_model'
+import { SeminarDetailModel } from '../models/seminar_detail_model'
+import { SeminarTitleModel } from '../models/seminar_title_model'
+import { SeminarModel } from '../models/seminar_model'
 import bodyemailSchema from '../schemas/bodyemail'
 import bodysinginSchema from '../schemas/bodysingin'
 import registerSchema from '../schemas/registerSchema' // {schema: registerSchema}, 
@@ -10,7 +16,7 @@ import bodysingupSchema from '../schemas/bodysingup'
 import ActivateSchema from '../schemas/bodyActivate' 
 import queryActivateSchema from '../schemas/queryActivate' 
 var md5 = require('md5');
-export default async function user(fastify: FastifyInstance) {
+export default async function seminar(fastify: FastifyInstance) {
 const userModel = new UserModel()
 const db: knex = fastify.db
 const multer = require('fastify-multer')
