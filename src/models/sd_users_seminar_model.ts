@@ -11,10 +11,26 @@ export class SdusersSeminarModel {
         .orderBy('seminar_id','desc')
         .limit(1)
     }
+    activate(db: knex, seminar_id: any, data: any) {
+        return db('sd_users_seminar')
+        .where('seminar_id', seminar_id)
+        .update(data)
+    }
+   login(db: knex, email: any, password: any) {
+       return db('sd_users_seminar')
+            .select('seminar_id,firstname,lastname,phonenumber,email,create,status,active,activedate')
+            .where('email', email)
+            .andWhere('password', password)
+    }
     update_by_seminar_id(db: knex, seminar_id: any, data: any) {
         return db('sd_users_seminar')
         .where('seminar_id', seminar_id)
         .update(data)
+    }
+    validation_email(db: knex, email: any) {
+        return db('sd_users_seminar')
+            .select('*')
+            .where('email', email)
     }
     check_data_by_seminar_id(db: knex, seminar_id: any) {
         return db('sd_users_seminar')
