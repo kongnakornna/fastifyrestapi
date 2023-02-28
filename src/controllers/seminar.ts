@@ -182,15 +182,14 @@ export default async function seminar(fastify: FastifyInstance) {
                         return  // exit process   
                 }
         }) 
-    
         fastify.get('/usersseminarlist', {preValidation: [fastify.authenticate]}, async (request: FastifyRequest, reply: FastifyReply) => {
              /******************************/
-                    reply.header("Access-Control-Allow-Origin", "*");  
-                    reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
-                    const headers: any = request.headers         
-                    const query: any = request.query       
-                    const params: any = request.params        
-                    /******************************/
+                reply.header("Access-Control-Allow-Origin", "*");  
+                reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+                const headers: any = request.headers         
+                const query: any = request.query       
+                const params: any = request.params        
+                /******************************/
                     const str: any = headers.authorization  
                     const host: any = headers.host   
                     const secret_key: any = headers.secret_key   
@@ -236,7 +235,7 @@ export default async function seminar(fastify: FastifyInstance) {
                     filter1.sizepsge=perpage;
                     filter1.isCount=0;
                     const ResultArray = await Seminar_Model.filter_title_users_seminar(db, filter1);
-                     /*****************************************/
+                /*****************************************/
                 try {      
                     let tempData = [];
                     for (const [key, value] of Object.entries(ResultArray)) {
@@ -317,7 +316,7 @@ export default async function seminar(fastify: FastifyInstance) {
                                     }) 
                         return  // exit process   
                 }        
-            }) 
+        }) 
         function toThaiDate(date: any) { 
             let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
                 let year = date.getFullYear() + 543;
