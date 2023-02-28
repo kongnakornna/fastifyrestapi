@@ -3,8 +3,9 @@
 # nodejs  Version node-v18.12.1
 ## Base URL
 ## http://localhost:3002/seminarapi/
-## nodejs v 18.12.1
-
+## nodejs v 18.x.x
+##  Author Kongnakorn Jantakun
+##  email kongnakornna@gmail.com
 
 # How To run project
 # install project
@@ -17,27 +18,26 @@
 
 ## Development server on Build
 # Build Source Code on production
-- Run `npx gulp `
- -- After Run `npx gulp ` is have directory `dist` file in package typescript
+- Run `npx gulp`
+ -- After Run `npx gulp` is have directory `dist` file in package typescript
 # directory Build file ` dist/server.ts`
 # How To run project
 # install project
-- Run `npm install `  and  Run `npm install -g nodemon`
+- Run `npm install`  and  Run `npm install -g nodemon`
 
 # Build Source Code on production
-- Run `npx gulp `
-# aduit
+- Run `npx gulp`
+
+# audit vulnerabilities 
 - Run `npm audit` #Check audit information of installed dependencies showing 
 - Run `npm audit fix --force`
-
-# vulnerabilities
 - Run `npm audit --json `#Show audit results more detailed with json format
 - Run `npm audit fix` #Audit and tries fixing vulnerabilities in dependencies
 - Run `npm audit fix `--focce #Forces fix of problems found in installed packages
 # installing further `dependencies if necessary
 
 ## Database
-Database as MySQL version 5.6.20 on trueplookpanya 
+Database as MySQL  
 
 ## AI Assistant
 # https://www.npmjs.com/package/virtual-assistant
@@ -58,10 +58,12 @@ Database as MySQL version 5.6.20 on trueplookpanya
   - 1.4 Access or allow to modules in function on api
   - 1.5 Validate Input data before access function and modules
   - 1.6 Cache management api
+
  2. User Management (Modules User )
  - 2.1 Update User Profile
  - 2.2 Access User permission level
  - 2.3 Delete User data Form Database
+
  3. Seminar Management (Modules Seminar )
  - 3.1  create new seminar  event or title. save to the database
  - 3.2  create detail list seminar event. save to the database
@@ -75,9 +77,11 @@ Database as MySQL version 5.6.20 on trueplookpanya
  - 3.10 Verify token form link to activator accept the invitation.
  - 3.11 Repornd Result data from database ,Show visitor data accept to seminar
  - 3.12 Repornd Result data,narrator,visitor, data users seminar 
+
  4. System Report (Modules Report )
  - 4.1 Report data,narrator,visitor, data users seminar 
  - 4.2 Report data seminar event have count title seminar,detail seminar,narrator,visitor, data users seminar
+ 
 ```
 ##  Task Process Develop
 ```
@@ -118,14 +122,12 @@ Database as MySQL version 5.6.20 on trueplookpanya
 ## Individual Development Team members may have specialized skills and areas of focus, but
 -- accountability belongs to the Development Team as a whole
 
-
 ## Development Teams The software development team consists of Product development specialists who will be able to deliver an increment of “finished” products at the end of each sprint.
-## Only members of the software development team can create an increment.
-##  Development Teams Set the structure and empower each other as a team. to determine their own way of working The result of working together to optimize, make the image
-## Overall, the software development team is most efficient and effective. The software development team must have the following characteristics:
-##  Self-administered team without anyone (not even the Scrum Master) telling the development team how to turn the Product Backlog into adding potentially published functionality.
-##  The development team works across functions. It has all the skills needed to create incremental products.
-##  Scrum does not recognize names for development team members other than Developer, regardless of the work performed by that person. There are no exceptions to this rule.
-##  Scrum does not recognize sub-teams in the development team. regardless of the specific domain to be managed, such as testing or business analytics. There are no exceptions to this rule.
-##  Individual development team members may have specific skills and areas of focus. But the responsibility lies with the development team as a whole.
-
+Only members of the software development team can create an increment.
+## Development Teams Set the structure and empower each other as a team. to determine their own way of working The result of working together to optimize, make the image
+Overall, the software development team is most efficient and effective. The software development team must have the following characteristics:
+• Self-administered team without anyone (not even the Scrum Master) telling the development team how to turn the Product Backlog into adding potentially published functionality.
+• The development team works across functions. It has all the skills needed to create incremental products.
+• Scrum does not recognize names for development team members other than Developer, regardless of the work performed by that person. There are no exceptions to this rule.
+• Scrum does not recognize sub-teams in the development team. regardless of the specific domain to be managed, such as testing or business analytics. There are no exceptions to this rule.
+• Individual development team members may have specific skills and areas of focus. But the responsibility lies with the development team as a whole.
