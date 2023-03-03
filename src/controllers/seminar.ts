@@ -182,6 +182,141 @@ export default async function seminar(fastify: FastifyInstance) {
                         return  // exit process   
                 }
         }) 
+        fastify.get('/usersseminarlist', {preValidation: [fastify.authenticate]}, async (request: FastifyRequest, reply: FastifyReply) => {
+             /******************************/
+                reply.header("Access-Control-Allow-Origin", "*");  
+                reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+                const headers: any = request.headers         
+                const query: any = request.query       
+                const params: any = request.params        
+                /******************************/
+                    const str: any = headers.authorization  
+                    const host: any = headers.host   
+                    const secret_key: any = headers.secret_key   
+                    const active_datatime: string = query.active_datatime|| 1;
+                    const status_active: string = query.status_active|| 1;
+                    const period_id: string = query.period_id;                    
+                    const keyword = query.keyword; 
+                    const seminar_id= query.seminar_id; 
+                    const title_id = query.title_id; 
+                    const email= query.email;
+                    const start= query.start;
+                    const end = query.end;    
+                    const isCount = query.isCount;
+                    const orderBy = query.orderBy || "desc";
+                    const limit = query.limit;  
+                    const status = query.status || 1;
+                    const page: number = Number(query?.page) || 1;
+                    const perpage: number = Number(query?.perpage) || 20;            
+                    const filter: any = {} 
+                    filter.seminar_id=seminar_id;
+                    filter.title_id = title_id; 
+                    filter.period_id = period_id; 
+                    filter.status_active = status_active;
+                    filter.keyword=keyword;                    
+                    filter.isCount=1;
+                    const rows = await Seminar_Model.filter_title_users_seminar(db, filter);
+                    const getCount = rows
+                    console.log("getCount", getCount) 
+                    const row: number = rows.length; // count array 
+                    const totalpages: number = Math.round((row / perpage)) || 1;
+                    console.log(`total_pages=`); 
+                    console.log(totalpages);
+                    const filter1: any = {} 
+                    filter1.seminar_id=seminar_id;
+                    filter1.title_id = title_id; 
+                    filter1.period_id = period_id; 
+                    filter1.status_active = status_active;
+                    filter1.keyword=keyword;
+                    filter1.start=start;
+                    filter1.end=end; 
+                    filter1.order=orderBy;
+                    filter1.pages=page;
+                    filter1.sizepsge=perpage;
+                    filter1.isCount=0;
+                    const ResultArray = await Seminar_Model.filter_title_users_seminar(db, filter1);
+                /*****************************************/
+                try {      
+                    let tempData = [];
+                    for (const [key, value] of Object.entries(ResultArray)) {
+                        // เอาค่าใน Object มา แปลง เป็น array แล้วนำไปใช้งาน ต่อ 
+                        const seminar_id: number = value.seminar_id; 
+                        const title_id:number = value.title_id;
+                        const title_name: string = value.title_name;  
+                        const title_detail: string = value.title_detail; 
+                        const spake_time: string = value.spake_time; 
+                        const title_url: string = value.title_url; 
+                        const startdate: string = value.startdate;
+                        const enddate: string = value.enddate; 
+                        const fullname_narrator: string = value.fullname_narrator; 
+                        const narrator_email: string = value.narrator_email;   
+                        const firstname_seminar: string = value.firstname_seminar;
+                        const lastname_seminar: string = value.lastname_seminar;
+                        const phonenumber_seminar: string = value.phonenumber_seminar;
+                        const email_seminar: string = value.email_seminar;
+                        const fullname_semina: string = value.fullname_semina; 
+                        const data = { 
+                                    seminar_id : seminar_id,
+                                    title_id: title_id, 
+                                    title_name: title_name, 
+                                    title_detail: title_detail, 
+                                    spake_time: spake_time, 
+                                    url: title_url, 
+                                    startdate: startdate, 
+                                    enddate: enddate, 
+                                    fullname_narrator: fullname_narrator, 
+                                    narrator_email: narrator_email, 
+                                    firstname_seminar: firstname_seminar, 
+                                    lastname_seminar: lastname_seminar, 
+                                    phonenumber_seminar: phonenumber_seminar, 
+                                    email_seminar: email_seminar, 
+                                    fullname_semina: fullname_semina, 
+                                } 
+                        tempData.push(data); 
+                    }
+                    const resultData: any = tempData; // นำ array มาใส่ใน object เพื่อนำไปแปลงเป็น Json
+                    // console.log(resultData) 
+                    console.warn(resultData)    
+                    reply.code(200).send({
+                                        response: {
+                                            result: "users seminar list!",
+                                            message: "Result,Data successful!", 
+                                            status: 1, 
+                                            data: null, 
+                                            StatusCode: '200',
+                                        },
+                                        input_query:query,
+                                        total_page: totalpages,
+                                        total: row, 
+                                        page: page,
+                                        perpage: perpage,
+                                        data: resultData,
+                                    })   
+                        return  // exit process  
+                 } catch (error: any) { 
+                        reply.code(401).send({
+                                            response: {
+                                                result: "Error",
+                                                message: "Result,Data  Unsuccessful!", 
+                                                status: 1, 
+                                                token: null,
+                                                StatusCode: '401',
+                                            }
+                                    }) 
+                        return  // exit process    
+                }finally {
+                    reply.code(403).send({
+                                            response: {
+                                                result: "Error",
+                                                message: "Result,Data Unsuccessful,Error System something!", 
+                                                status: 1, 
+                                                token: null,
+                                                StatusCode: '403',
+                                            }
+                                    }) 
+                        return  // exit process   
+                }        
+        }) 
         function toThaiDate(date: any) { 
             let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
                 let year = date.getFullYear() + 543;

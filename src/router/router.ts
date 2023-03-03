@@ -4,6 +4,8 @@ import usersRouter from '../controllers/users'
 import loginRouter from '../controllers/login'
 import uploadRouter from '../controllers/upload'
 import seminarRouter from '../controllers/seminar'
+import seminaruserRouter from '../controllers/seminaruser'
+import narratorRouter from '../controllers/narrator' 
 export default async function router(fastify: FastifyInstance) {
   // router prefix
   fastify.register(indexRouter, { prefix: '/' }) 
@@ -11,4 +13,6 @@ export default async function router(fastify: FastifyInstance) {
   fastify.register(loginRouter, { prefix: '/login' }) 
   fastify.register(uploadRouter, { prefix: '/uploads' })
   fastify.register(seminarRouter, { prefix: '/seminar' })
+  fastify.register(seminaruserRouter, { prefix: '/seminaruser' })
+  fastify.register(narratorRouter, { prefix: '/narrator' })
 }

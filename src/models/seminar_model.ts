@@ -256,15 +256,16 @@ export class SeminarModels {
                     console.log(`data keyword `, keyword);
                     console.log(`data isCount `, isCount); 
                 }
-                let query = db('sd_users_seminar as us');  
-                    query = query.innerJoin('seminarregister as rt', 'rt.seminar_id', 'us.seminar_id'); 
-                    query = query.innerJoin('seminar_title as t', 't.id', 'rt.seminar_title_id'); 
-                    query = query.innerJoin('sd_users_narrator as u', 'u.narrator_id', 't.narrator_id');  
+                let query = db('sd_users_seminar AS us');  
+                    query = query.innerJoin('seminarregister AS rt', 'rt.seminar_id', 'us.seminar_id'); 
+                    query = query.innerJoin('seminar_title AS t', 't.id', 'rt.seminar_title_id'); 
+                    query = query.innerJoin('sd_users_narrator AS u', 'u.narrator_id', 't.narrator_id');  
                     if(isCount==1){
                         query = query.select('u.seminar_id');
                     }else{ 
-                        query = query.select('u.seminar_id');   
-                        query = query.select('t.title as title_name');   
+                        query = query.select('u.seminar_id');  
+                        query = query.select('u.seminar_id'); 
+                        query = query.select('t.id as title_id');   
                         query = query.select('t.detail as title_detail');  
                         query = query.select('t.spake_time as spake_time');  
                         query = query.select('t.url as title_url');  
