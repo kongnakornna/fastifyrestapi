@@ -47,6 +47,10 @@
 - Run `npm audit fix` #Audit and tries fixing vulnerabilities in dependencies
 - Run `npm audit fix `--focce #Forces fix of problems found in installed packages
 # installing further `dependencies if necessary
+ 
+# taskkill /f /im node.exe
+# netstat -an
+
 
 ## Database
 Database as MySQL  
@@ -147,3 +151,103 @@ Overall, the software development team is most efficient and effective. The soft
 • Scrum does not recognize sub-teams in the development team. regardless of the specific domain to be managed, such as testing or business analytics. There are no exceptions to this rule.
 • Individual development team members may have specific skills and areas of focus. But the responsibility lies with the development team as a whole.
 ```
+
+- Run `pm2 start server.js --name "apiapp" ` #  ติดตั้ง service apiapp ใหม่ บน pm2
+# ############## How to Run PM2 on windows 
+- Run `I: D:\nodejsapp\reactjs-typescript-api-fastify\api\dist`
+- Run `cd D:\nodejsapp\reactjs-typescript-api-fastify\api`   # I:\app\snmpapiv2
+- Run `pm2 list` # ดูว่า มี service ไหม
+- Run `pm2 delete apiapp ` #  ลบ service cmonapp ออก จาก pm2
+- Run `pm2 flush apiapp`  #  ลบ log apiapp ออก จาก pm2
+
+- OR Run `cd dist`
+- OR Run `pm2 start server.js --name "apiapp" ` #  ติดตั้ง service apiapp ใหม่ บน pm2
+ - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+ - Run `pm2 start dist/server.js --name "apiapp" ` #  ติดตั้ง service apiapp ใหม่ บน pm2
+ - Run `npm install pm2 -g `
+$ pm2 restart app_name
+$ pm2 reload app_name
+$ pm2 stop app_name
+$ pm2 delete app_name
+
+
+
+# ************************
+# Fastify เน้นความเร็ว ในการ  
+# DIY  วางโครงสร้างเอง 
+-- https://www.fastify.io/benchmarks
+-การสร้าง RESTful API `(Application Programming Interface) `ด้วย `Fastify`
+-Run `npm i fastify` 
+-Then create `server.js` and add the following content:
+-Run `npm init fastify` 
+-Run `npm run dev` 
+- ecosystem
+# https://www.fastify.io/ecosystem/
+-การใช้งานปลั๊กอินของ `Fastify` fastify-plugin
+-- Plugins knexjs mysql db
+-- Plugins typeorm mysql db 
+-- Plugins JWT
+-การทำ CRUD กับฐานข้อมูล MySQL
+-knexjs CRUD
+-- Plugins knexjs 
+-- Database connection 
+-- controllers 
+-- CRUD models 
+-- Create  funtion /Insert mysql
+-- Read  funtion /Select mysql  
+-- Update  funtion /update mysql
+-- Delete  funtion /Delete mysql
+-- validation Function , json Schema
+-Typeorm
+-- Plugins typeorm 
+-- Database connection 
+-- Entity manager..
+-- Database-specific column types.
+-- Entity Column form sql Table
+-- Schema declaration in models 
+-- Repositories and custom repositories
+-- Repositories Create  funtion /Insert mysql
+-- Repositories Read  funtion /Select mysql  
+-- Repositories Update  funtion /update mysql
+-- Repositories Delete  funtion /Delete mysql
+-- controllers Include funtion form model
+-- Verify,validation Schema,Function, json Schema
+-การทำ Route validation
+-- mainrouter 
+-- subrouter 
+-- validation in function router
+-- JSON Schema
+-การทำ JWT 
+-- JWT Create Token
+-- JWT Verify Token
+-- JWT Set Time Token
+-- utils  (middleware) Class 2 กลุ่มหลัก
+--- libraries
+---- cache.libraries
+---- rediscache.libraries
+---- redisqueue.libraries
+# https://www.npmjs.com/package/fastify-queue
+--- helpers
+---- validator.helper
+---- function.helper
+
+
+# ************************
+-การใช้งาน SocketIO
+--Plugins SocketIO
+-การใช้งาน WebSocket
+--Plugins WebSocket
+-การอัปโหลดไฟล์
+--fastify-multer
+--mime-types
+--fs-extra
+--path
+--fs
+ 
+
+# https://www.npmjs.com/package/convert-csv-to-json
+# https://github.com/huangang/fastify-file-upload
+# https://github.com/greguz/fastify-kubernetes
+# https://github.com/love-lena/fastify-mqtt
+# https://www.npmjs.com/package/minipass-pipeline
+# https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-docker-registry

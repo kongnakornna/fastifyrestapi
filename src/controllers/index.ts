@@ -10,18 +10,28 @@ const env:any = process.env
 //console.warn(`port=>`,  port);  
 const APIKEY:any = env.API_KEY
 console.warn(`APIKEY=>`, APIKEY);  
-//console.warn(`env=>`, env);  
+import { _publicfunctions } from '../utils/helpers/functions.helper';  
+import { _Validator } from '../utils/helpers/validator.helper';  
+const Validator = new _Validator() 
+const Functions = new _publicfunctions() 
+/***********************/
+import {encode, decode} from 'string-encode-decode'
 /***********************/
 export default async function index(fastify: FastifyInstance) {
   fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
         reply.header("Access-Control-Allow-Origin", "*");  
-        reply.header('Access-Control-Allow-Methods', 'GET');    
-        const getchar: string = getRandomint(5);
+        reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+        const getchar: string = Functions.getRandomint(5);
+        let en = encode(getchar);
+        let de = decode(en);
         reply.code(200).send({
                                 response: {
-                                    message: 'Welcome To Application Service!', 
+                                    message: 'Route GET:Welcome To Application Microservice!', 
                                     status: 1, 
-                                    data:getchar,
+                                    //gen:getchar,
+                                    en:en,
+                                    data:de,
+                                    error:"OK",
                                     StatusCode: '200',
                                 }
                           })
@@ -29,13 +39,18 @@ export default async function index(fastify: FastifyInstance) {
   })
   fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
         reply.header("Access-Control-Allow-Origin", "*");  
-        reply.header('Access-Control-Allow-Methods', 'POST'); 
-        const getchar: string = getRandomint(5);
+        reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+        const getchar: string = Functions.getRandomint(5);
+        let en = encode(getchar);
+        let de = decode(en);
         reply.code(200).send({
                                     response: {
-                                        message: 'Welcome To Application Service!', 
+                                        message: 'Route POST:Welcome To Application Microservice!', 
                                         status: 1, 
-                                        data:getchar,
+                                        //gen:getchar,
+                                        en:en,
+                                        data:de,
+                                        error:"OK",
                                         StatusCode: '200',
                                     }
                             }) 
@@ -50,7 +65,7 @@ export default async function index(fastify: FastifyInstance) {
     const body: any = request.body;
     const params: any = request.params || null;  
     const apikey : any = request.headers.apikey || null;
-    const getchar: string = getRandomchar(16);
+    const getchar: string = Functions.getRandomchar(16);
     /*
     console.log("headers", headers);  
     console.log("apikey", apikey);
@@ -117,10 +132,10 @@ export default async function index(fastify: FastifyInstance) {
     //console.warn(`start_date `, start_date);
     let end_date: any = new Date(end_token * 1000);
     //console.warn(`end_date `, end_date);
-    let start_date_en: any = toEnDate(start_date);
-    let end_date_en: any =  toEnDate(end_date);
-    let start_date_thai: any =  toThaiDate(start_date);
-    let end_date_thai: any = toThaiDate(end_date);  
+    let start_date_en: any = Functions.toEnDate(start_date);
+    let end_date_en: any =  Functions.toEnDate(end_date);
+    let start_date_thai: any =  Functions.toThaiDate(start_date);
+    let end_date_thai: any = Functions.toThaiDate(end_date);  
     console.warn(`start_date_en `, start_date_en);
     console.warn(`end_date_en `, end_date_en);
     console.warn(`start_date_thai `, start_date_thai);
@@ -233,90 +248,87 @@ export default async function index(fastify: FastifyInstance) {
                           }
                     }) 
       return  // exit process        
-  }) 
-  function toThaiDate(date: any) { 
-      let monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]; 
-        let year = date.getFullYear() + 543;
-        let month = monthNames[date.getMonth()];
-        let numOfDay = date.getDate();
-        let hour = date.getHours().toString().padStart(2, "0");
-        let minutes = date.getMinutes().toString().padStart(2, "0");
-        let second = date.getSeconds().toString().padStart(2, "0");
-      return `${numOfDay} ${month} ${year} ` +`${hour}:${minutes}:${second} น.`;
-  }
-  function toEnDate(date: any) { 
-      let monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]; 
-      let monthNameslong = ["January", "February", "March.", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
-      let year = date.getFullYear()+ 0;
-      let month = monthNameslong[date.getMonth()];
-      let numOfDay = date.getDate();
-      let hour = date.getHours().toString().padStart(2, "0");
-      let minutes = date.getMinutes().toString().padStart(2, "0");
-      let second = date.getSeconds().toString().padStart(2, "0");
-      return `${numOfDay} ${month} ${year} ` +`${hour}:${minutes}:${second}`;
-  }
-  function timeConverter(UNIX_timestamp:any){
-        var a = new Date(UNIX_timestamp * 1000);
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var year = a.getFullYear();
-        var month = months[a.getMonth()];
-        var date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        var sec = a.getSeconds();
-        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-        return time;
-  }  
-  function toTimestamp(strDate: any){ var datum = Date.parse(strDate); return datum/1000;}
-  function getRandomString(length: any) {
-        //var randomChars: any = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
-        var randomChars: any =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#';
-        var result: any =  ''
-        for ( var i = 0; i < length; i++ ) {
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
-        }
-        return result
-  }
-  function getRandomchar(length: any) { 
-        var randomChars: any =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var result: any =  ''
-        for ( var i = 0; i < length; i++ ) {
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
-        }
-        return result
-  }
-  function getRandomint(length: any) { 
-        var randomChars: any =  '0123456789';
-        var result: any =  ''
-        for ( var i = 0; i < length; i++ ) {
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
-        }
-        return result
-  }
-  function getRandomsrtsmall(length: any) { 
-        var randomChars: any =  'abcdefghijklmnopqrstuvwxyz';
-        var result: any =  ''
-        for ( var i = 0; i < length; i++ ) {
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
-        }
-        return result
-  }
-  function getRandomsrtbig(length: any) { 
-        var randomChars: any =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        var result: any =  ''
-        for ( var i = 0; i < length; i++ ) {
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
-        }
-        return result
-  }
-  function passwordValidator(inputtxt: any){ 
-    var paswd :any= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
-    if(inputtxt.match(paswd)){  
-        console.log('Your validate password  Correct, try another...:'+inputtxt);
-        return true;
-    }else{  
-            console.log('You validate password Wrong...:'+inputtxt);
-        return false;
-    }
-  }   
+  })  
 } 
+
+// https://restfulapi.net/http-status-codes/
+/*
+1×× Informational
+
+100 Continue
+101 Switching Protocols
+102 Processing
+
+2×× Success
+
+200 OK
+201 Created
+202 Accepted
+203 Non-authoritative Information
+204 No Content
+205 Reset Content
+206 Partial Content
+207 Multi-Status
+208 Already Reported
+226 IM Used
+
+3×× Redirection
+
+300 Multiple Choices
+301 Moved Permanently
+302 Found
+303 See Other
+304 Not Modified
+305 Use Proxy
+307 Temporary Redirect
+308 Permanent Redirect
+
+4×× Client Error
+
+400 Bad Request
+401 Unauthorized
+402 Payment Required
+403 Forbidden
+404 Not Found
+405 Method Not Allowed
+406 Not Acceptable
+407 Proxy Authentication Required
+408 Request Timeout
+409 Conflict
+410 Gone
+411 Length Required
+412 Precondition Failed
+413 Payload Too Large
+414 Request-URI Too Long
+415 Unsupported Media Type
+416 Requested Range Not Satisfiable
+417 Expectation Failed
+418 I’m a teapot
+421 Misdirected Request
+422 Unprocessable Entity
+423 Locked
+424 Failed Dependency
+426 Upgrade Required
+428 Precondition Required
+429 Too Many Requests
+431 Request Header Fields Too Large
+444 Connection Closed Without FastifyReply
+451 Unavailable For Legal Reasons
+499 Client Closed Request
+
+5×× Server Error
+
+500 Internal Server Error
+501 Not Implemented
+502 Bad Gateway
+503 Service Unavailable
+504 Gateway Timeout
+505 HTTP Version Not Supported
+506 Variant Also Negotiates
+507 Insufficient Storage
+508 Loop Detected
+510 Not Extended
+511 Network Authentication Required
+599 Network Connect Timeout Error
+
+*/
